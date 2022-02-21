@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import routes from '@shared/http/routes';
 import middleware from './errors/middleware';
+import '@shared/typeorm';
 
 const app = express();
 
