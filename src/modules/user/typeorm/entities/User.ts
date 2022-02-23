@@ -19,7 +19,7 @@ class User {
   @Column({ unique: true })
   username: string;
 
-  @Column({ select: false })
+  @Column()
   passhash: string;
 
   @ManyToOne(() => Department, department => department.id)
