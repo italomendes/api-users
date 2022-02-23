@@ -12,4 +12,8 @@ export class DepartmentRepository extends Repository<Department> {
 
     return department;
   }
+
+  public async exists(id: string): Promise<boolean> {
+    return await !!this.findOne(id);
+  }
 }

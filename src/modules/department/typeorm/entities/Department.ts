@@ -1,9 +1,9 @@
-import CostCenter from '@modules/cost_center/typeorm/entities/CostCenter';
+import CostCenter from '../../../cost_center/typeorm/entities/CostCenter';
 import {
   Column,
   Entity,
   JoinColumn,
-  OneToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -15,7 +15,7 @@ class Department {
   @Column()
   name: string;
 
-  @OneToMany(() => CostCenter, costCenter => costCenter.id)
+  @ManyToOne(() => CostCenter, costCenter => costCenter.id)
   @JoinColumn({ name: 'cost_center_id' })
   costCenterId: string;
 }

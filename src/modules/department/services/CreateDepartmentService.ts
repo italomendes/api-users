@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { CostCenterRepository } from '@modules/cost_center/typeorm/repositories/CostCenterRepository';
 import AppError from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
@@ -14,9 +15,10 @@ class CreateDepartmentService {
     const costCenterRepository = getCustomRepository(CostCenterRepository);
     const deparmentRepository = getCustomRepository(DepartmentRepository);
 
-    const costCenterExist = costCenterRepository.findOne(costCenterId);
+    const costCenterExists =
+      costCenterRepository.exists(costCenterId);
 
-    if (!costCenterExist) {
+    if (!costCenterExists) {
       throw new AppError('Cost Center dont exists');
     }
 
