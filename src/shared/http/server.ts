@@ -1,7 +1,9 @@
+import 'reflect-metadata';
 import express from 'express';
 import cors from 'cors';
-import routes from '@shared/http/routes';
-import middleware from './errors/Middleware';
+import routes from '@shared/routes';
+import middleware from '@shared/errors/middleware';
+import '@shared/typeorm';
 
 const app = express();
 
