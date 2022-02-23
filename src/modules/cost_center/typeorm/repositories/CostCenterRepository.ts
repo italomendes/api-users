@@ -12,4 +12,8 @@ export class CostCenterRepository extends Repository<CostCenter> {
 
     return costCenter;
   }
+
+  public async exists(id: string): Promise<boolean> {
+    return await !!this.findOne(id);
+  }
 }
