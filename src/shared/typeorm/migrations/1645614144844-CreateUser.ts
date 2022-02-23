@@ -58,5 +58,17 @@ export class CreateUser1645614144844 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable('user');
+    await queryRunner.dropForeignKeys('user', [
+      new TableForeignKey({
+        columnNames: ['department_id'],
+        referencedTableName: 'department',
+        referencedColumnNames: ['id'],
+      }),
+      new TableForeignKey({
+        columnNames: ['role_id'],
+        referencedTableName: 'role',
+        referencedColumnNames: ['id'],
+      }),
+    ]);
   }
 }

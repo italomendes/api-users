@@ -42,5 +42,13 @@ export class CreateDepartment1645585379906 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable('department');
+    await queryRunner.dropForeignKey(
+      'department',
+      new TableForeignKey({
+        columnNames: ['cost_center_id'],
+        referencedTableName: 'cost_center',
+        referencedColumnNames: ['id'],
+      }),
+    );
   }
 }
