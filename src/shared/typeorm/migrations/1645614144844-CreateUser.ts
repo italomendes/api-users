@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreateDepartment1645585379906 implements MigrationInterface {
+export class CreateUser1645614144844 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'department',
+        name: 'user',
         columns: [
           {
             name: 'id',
@@ -23,24 +23,40 @@ export class CreateDepartment1645585379906 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'cost_center_id',
+            name: 'username',
+            type: 'varchar',
+          },
+          {
+            name: 'passhash',
+            type: 'varchar',
+          },
+          {
+            name: 'department_id',
+            type: 'uuid',
+          },
+          {
+            name: 'role_id',
             type: 'uuid',
           },
         ],
       }),
     );
 
-    await queryRunner.createForeignKey(
-      'department',
+    await queryRunner.createForeignKeys('user', [
       new TableForeignKey({
-        columnNames: ['cost_center_id'],
-        referencedTableName: 'cost_center',
+        columnNames: ['department_id'],
+        referencedTableName: 'department',
         referencedColumnNames: ['id'],
       }),
-    );
+      new TableForeignKey({
+        columnNames: ['role_id'],
+        referencedTableName: 'role',
+        referencedColumnNames: ['id'],
+      }),
+    ]);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('department');
+    await queryRunner.dropTable('user');
   }
 }
