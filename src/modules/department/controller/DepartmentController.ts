@@ -47,4 +47,24 @@ export default class DepartmentController {
 
     return response.json(result);
   }
+
+  public async get(request: Request, response: Response): Promise<Response> {
+    const id = request.params.id;
+
+    const department = await getCustomRepository(DepartmentRepository).findOne(
+      id,
+    );
+
+    return response.json(department);
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const id = request.params.id;
+
+    const departmentDelete = await getCustomRepository(
+      DepartmentRepository,
+    ).delete(id);
+
+    return response.json(departmentDelete);
+  }
 }
