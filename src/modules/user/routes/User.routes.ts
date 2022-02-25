@@ -7,6 +7,8 @@ const userController = new UserController();
 const authUserController = new AuthUserController();
 
 userRouter.post('/', userController.create);
+userRouter.get('/', userController.listAll);
+userRouter.get('/:id', userController.listByDepartment);
 userRouter.post('/login', authUserController.authenticate);
 
 export default userRouter;

@@ -21,13 +21,17 @@ class CreateUserService {
     password,
     departmentId,
     roleId,
-  }: IRequest): Promise<User> {
+  }: IRequest): Promise<User | AppError> {
     const userRepository = getCustomRepository(UserRepository);
     const deparmentRepository = getCustomRepository(DepartmentRepository);
     const roleRepository = getCustomRepository(RoleRepository);
 
     const departmentExists = deparmentRepository.exists(departmentId);
     const roleExists = roleRepository.exists(roleId);
+
+    if (await userRepository.findOne({ username })) {
+      return new AppError('Username already exists');
+    }
 
     if (!departmentExists) {
       throw new AppError('Department dont exists');

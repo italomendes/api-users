@@ -22,13 +22,19 @@ class User {
   @Column()
   passhash: string;
 
+  @Column({ name: 'department_id' })
+  departmentId: string;
+
+  @Column({ name: 'role_id' })
+  roleId: string;
+
   @ManyToOne(() => Department, department => department.id)
   @JoinColumn({ name: 'department_id' })
-  departmentId: string;
+  department: Department;
 
   @ManyToOne(() => Role, role => role.id)
   @JoinColumn({ name: 'role_id' })
-  roleId: string;
+  role: Role;
 }
 
 export default User;
