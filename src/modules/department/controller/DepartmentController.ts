@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
 import CreateDepartmentService from '../services/CreateDepartmentService';
 import ListByCostCenterService from '../services/ListByCostCenterService';
+import UpdateDepartmentService from '../services/UpdateDepartmentService';
 import { DepartmentRepository } from '../typeorm/repositories/DepartmentRepository';
 
 export default class DepartmentController {
@@ -12,6 +13,16 @@ export default class DepartmentController {
     const createDepartment = new CreateDepartmentService();
 
     const department = await createDepartment.execute(request.body);
+
+    return response.json(department);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const id = request.params.id;
+
+    const updateDepartment = new UpdateDepartmentService();
+
+    const department = await updateDepartment.execute(id, request.body);
 
     return response.json(department);
   }
