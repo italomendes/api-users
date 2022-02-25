@@ -5,6 +5,8 @@ import { getCustomRepository } from 'typeorm';
 import User from '../typeorm/entities/User';
 import * as bcrypt from 'bcrypt';
 import { UserRepository } from '../typeorm/repositories/UserRepository';
+import Department from '@modules/department/typeorm/entities/Department';
+import Role from '@modules/role/typeorm/entities/Role';
 
 interface IRequest {
   name: string;
@@ -23,23 +25,23 @@ class CreateUserService {
     roleId,
   }: IRequest): Promise<User | AppError> {
     const userRepository = getCustomRepository(UserRepository);
-    const deparmentRepository = getCustomRepository(DepartmentRepository);
-    const roleRepository = getCustomRepository(RoleRepository);
+    // const deparmentRepository = getCustomRepository(DepartmentRepository);
+    // const roleRepository = getCustomRepository(RoleRepository);
 
-    const departmentExists = deparmentRepository.exists(departmentId);
-    const roleExists = roleRepository.exists(roleId);
+    // const departmentExists = deparmentRepository.exists(department.id);
+    // const roleExists = roleRepository.exists(role.id);
 
     if (await userRepository.findOne({ username })) {
       return new AppError('Username already exists');
     }
 
-    if (!departmentExists) {
-      throw new AppError('Department dont exists');
-    }
+    // if (!departmentExists) {
+    //   throw new AppError('Department dont exists');
+    // }
 
-    if (!roleExists) {
-      throw new AppError('Role dont exists');
-    }
+    // if (!roleExists) {
+    //   throw new AppError('Role dont exists');
+    // }
 
     const passhash = await bcrypt.hash(password, 10);
 

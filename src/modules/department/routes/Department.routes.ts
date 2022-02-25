@@ -2,8 +2,10 @@ import { Router } from 'express';
 import DepartmentController from '../controller/DepartmentController';
 
 const departmentRouter = Router();
-const costCenterController = new DepartmentController();
+const departmentController = new DepartmentController();
 
-departmentRouter.post('/', costCenterController.create);
+departmentRouter.post('/', departmentController.create);
+departmentRouter.get('/', departmentController.getAll);
+departmentRouter.get('/:id', departmentController.listByCostCenter);
 
 export default departmentRouter;

@@ -22,18 +22,16 @@ class User {
   @Column()
   passhash: string;
 
-  @Column({ name: 'department_id' })
+  @Column()
   departmentId: string;
 
-  @Column({ name: 'role_id' })
+  @Column()
   roleId: string;
 
-  @ManyToOne(() => Department, department => department.id)
-  @JoinColumn({ name: 'department_id' })
+  @ManyToOne(type => Department, department => Department)
   department: Department;
 
-  @ManyToOne(() => Role, role => role.id)
-  @JoinColumn({ name: 'role_id' })
+  @ManyToOne(type => Role, role => Role)
   role: Role;
 }
 
