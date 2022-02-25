@@ -22,13 +22,17 @@ class User {
   @Column()
   passhash: string;
 
-  @ManyToOne(() => Department, department => department.id)
-  @JoinColumn({ name: 'department_id' })
+  @Column()
   departmentId: string;
 
-  @ManyToOne(() => Role, role => role.id)
-  @JoinColumn({ name: 'role_id' })
+  @Column()
   roleId: string;
+
+  @ManyToOne(type => Department, department => Department, { eager: true })
+  department: Department;
+
+  @ManyToOne(type => Role, role => Role, { eager: true })
+  role: Role;
 }
 
 export default User;

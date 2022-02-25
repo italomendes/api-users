@@ -13,6 +13,10 @@ export class CostCenterRepository extends Repository<CostCenter> {
     return costCenter;
   }
 
+  public async getAll(): Promise<CostCenter[]> {
+    return await this.find();
+  }
+
   public async exists(id: string): Promise<boolean> {
     return await !!this.findOne(id);
   }

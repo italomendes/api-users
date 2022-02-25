@@ -15,6 +15,21 @@ export class UserRepository extends Repository<User> {
     return user;
   }
 
+  public async listAll(): Promise<User[]> {
+    const users = await this.find({ relations: ['department', 'role'] });
+
+    return users;
+  }
+
+  public async listByDepartment(departmentId: string): Promise<User[]> {
+    const users = await this.find({
+      relations: ['department', 'role'],
+      where: { departmentId },
+    });
+
+    return users;
+  }
+
   public async isValidPassword(
     passwordDb: string,
     passwordInput: string,

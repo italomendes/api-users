@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import Department from '../../../department/typeorm/entities/Department';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('cost_center')
 class CostCenter {
@@ -7,6 +14,9 @@ class CostCenter {
 
   @Column()
   name: string;
+
+  @OneToMany(type => Department, departments => Department)
+  departments: Department[];
 }
 
 export default CostCenter;

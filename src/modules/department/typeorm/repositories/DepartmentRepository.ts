@@ -13,7 +13,19 @@ export class DepartmentRepository extends Repository<Department> {
     return department;
   }
 
+  public async getAll(): Promise<Department[]> {
+    return await this.find();
+  }
+
   public async exists(id: string): Promise<boolean> {
     return await !!this.findOne(id);
+  }
+
+  public async listByCostCenter(costCenterId: string): Promise<Department[]> {
+    const departments = await this.find({
+      where: { costCenterId },
+    });
+
+    return departments;
   }
 }

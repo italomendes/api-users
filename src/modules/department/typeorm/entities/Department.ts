@@ -4,8 +4,10 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import User from '../../../user/typeorm/entities/User';
 
 @Entity('department')
 class Department {
@@ -15,9 +17,14 @@ class Department {
   @Column()
   name: string;
 
-  @ManyToOne(() => CostCenter, costCenter => costCenter.id)
-  @JoinColumn({ name: 'cost_center_id' })
+  @Column()
   costCenterId: string;
+
+  @ManyToOne(type => CostCenter, costCenters => CostCenter, { eager: true })
+  costCenter: CostCenter;
+
+  @OneToMany(type => User, users => User)
+  users: User[];
 }
 
 export default Department;
