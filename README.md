@@ -16,6 +16,7 @@ cp .env.example .env
 - Crie um banco no postgres conforme informado no .env (o padrão está como apiusers).
 - Execute o comando `yarn install` para instalar as dependências.
 - Execute o comando `yarn typeorm migration:run` para a criação da estrutura da base de dados.
+- Execute o comando `yarn dev` para rodar a API.
 
 ## Observações adicionais
 
