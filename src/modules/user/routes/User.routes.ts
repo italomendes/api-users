@@ -8,7 +8,9 @@ const authUserController = new AuthUserController();
 
 userRouter.post('/', userController.create);
 userRouter.get('/', userController.listAll);
-userRouter.get('/:id', userController.listByDepartment);
+userRouter.get('department/:id', userController.listByDepartment);
 userRouter.post('/login', authUserController.authenticate);
+userRouter.get('/:id', userController.get);
+userRouter.delete('/:id', userController.delete);
 
 export default userRouter;
