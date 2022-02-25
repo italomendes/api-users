@@ -28,10 +28,10 @@ class User {
   @Column()
   roleId: string;
 
-  @ManyToOne(type => Department, department => Department)
+  @ManyToOne(type => Department, department => Department, { eager: true })
   department: Department;
 
-  @ManyToOne(type => Role, role => Role)
+  @ManyToOne(type => Role, role => Role, { eager: true })
   role: Role;
 }
 
